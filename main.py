@@ -8,10 +8,9 @@ from PySide6.QtWidgets import QApplication, QLabel, QMainWindow
 
 from mylabel import Canvas
 from mainwindow import Ui_MainWindow
-import urllib.request
-import urllib.parse
 import base64
 import argparse
+import requests
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -28,16 +27,10 @@ class MainWindow(QMainWindow):
         img_b64 = base64.b64encode(img)
         img_msg = img_b64.decode('ascii')
         
-        data = urllib.parse.urlencode({'img': img_msg})
-        data = data.encode('ascii')
-
-        # post
-        ctx = ssl.SSLContext()
-        req = urllib.request.Request(url, data)
-        with urllib.request.urlopen(req) as f:
-            content = f.read()
-            print(f'content {content}')
-            res = content.decode('utf-8')
+        data = {'img': img_msg}
+        r = requests.post(url, json=data)
+        print(r.json())
+        self.ui.textEdit.setText(r.text)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
