@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from PySide6.QtGui import QMouseEvent, QPainter, QPen, QPixmap
 from PySide6.QtWidgets import QLabel
-from PySide6.QtCore import QPointF, Qt
+from PySide6.QtCore import QBuffer, QByteArray, QIODevice, QPointF, Qt
 
 class Canvas(QLabel):
     def __init__(self, parent):
@@ -42,4 +42,12 @@ class Canvas(QLabel):
         pixmap = self.pixmap()
         pixmap.fill(Qt.white)
         self.setPixmap(pixmap)
-        # self.update()
+    
+    def export_image(self) -> bytes:
+        pixmap = self.pixmap()
+        ba = QByteArray()
+        buff = QBuffer(ba)
+        buff.open(QIODevice.WriteOnly)
+        ok = pixmap.save(buff, 'JPG')
+        return ba.data()
+    
