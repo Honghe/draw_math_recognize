@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label.setText("")
         self.clearButton.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.recognizeButton.setText(QCoreApplication.translate("MainWindow", u"Recognize", None))
     # retranslateUi
