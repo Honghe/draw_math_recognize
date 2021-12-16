@@ -1,6 +1,6 @@
 import os
 import sys
-from PySide6.QtGui import QPainter, QPixmap
+from PySide6.QtGui import QMouseEvent, QPainter, QPixmap
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import Qt
 from mainwindow import Ui_MainWindow
@@ -16,15 +16,12 @@ class MainWindow(QMainWindow):
         canvas.fill(Qt.white)
         self.ui.label.setPixmap(canvas)
 
-        self.draw_something()
-
-    def draw_something(self):
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
         canvas = self.ui.label.pixmap()
         painter = QPainter(canvas)
-        painter.drawLine(10,10,300,200)
+        painter.drawPoint(event.position())
         painter.end()
         self.ui.label.setPixmap(canvas)
-        
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
