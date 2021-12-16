@@ -15,7 +15,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Math OCR")
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        
+        self.ui.clearButton.clicked.connect(self.ui.label.clear)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

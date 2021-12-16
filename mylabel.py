@@ -37,3 +37,9 @@ class Canvas(QLabel):
     def mouseReleaseEvent(self, event: QMouseEvent) -> None:
         self.last_x = None
         self.last_y = None
+
+    def clear(self):
+        pixmap = self.pixmap()
+        pixmap.fill(Qt.white)
+        self.setPixmap(pixmap)
+        # self.update()
