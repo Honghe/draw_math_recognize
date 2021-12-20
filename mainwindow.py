@@ -52,6 +52,9 @@ class Ui_MainWindow(object):
 
         self.textEdit = QTextEdit(self.centralwidget)
         self.textEdit.setObjectName(u"textEdit")
+        font = QFont()
+        font.setPointSize(14)
+        self.textEdit.setFont(font)
 
         self.verticalLayout.addWidget(self.textEdit)
 

@@ -23,7 +23,7 @@ class Canvas(QLabel):
         canvas = self.pixmap()
         painter = QPainter(canvas)
         pen = QPen()
-        pen.setWidth(3)
+        pen.setWidth(4)
         pen.setColor(Qt.black)
         painter.setPen(pen)
         painter.drawLine(QPointF(self.last_x, self.last_y), event.position())
